@@ -6,6 +6,9 @@ M.plugins = {
 		"stevearc/oil.nvim",
 		opts = {},
 		dependencies = { "nvim-tree/nvim-web-devicons" },
+		config = function()
+			return require("plugins.configs.oil")
+		end,
 	},
 	{
 		"nvim-telescope/telescope.nvim",
@@ -49,7 +52,15 @@ M.plugins = {
 			})
 		end,
 	},
-	{ "ellisonleao/gruvbox.nvim" },
+	{
+		"ellisonleao/gruvbox.nvim",
+		opts = {
+			terminal_colors = true,
+			strikethrough = false,
+			undercurl = false,
+			underline = true,
+		},
+	},
 
 	{
 		"https://github.com/hrsh7th/nvim-cmp",
@@ -112,6 +123,7 @@ M.plugins = {
 		end,
 	},
 	{
+		-- treeshitter
 		"nvim-treesitter/nvim-treesitter",
 		event = { "BufReadPre", "BufNewFile" },
 		config = function()
@@ -125,12 +137,31 @@ M.plugins = {
 	},
 	{ "https://github.com/nvim-treesitter/nvim-treesitter-context" },
 	{
-		"aserowy/tmux.nvim",
+		"christoomey/vim-tmux-navigator",
+		cmd = {
+			"TmuxNavigateLeft",
+			"TmuxNavigateDown",
+			"TmuxNavigateUp",
+			"TmuxNavigateRight",
+			"TmuxNavigatePrevious",
+		},
+		keys = {
+			{ "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>" },
+			{ "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>" },
+			{ "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>" },
+			{ "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
+			{ "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
+		},
+	},
+	{
+		"ThePrimeagen/harpoon",
+		lazy = false,
+		branch = "harpoon2",
+		requires = { "nvim-lua/plenary.nvim" },
 		config = function()
-			return require("tmux").setup({})
+			return require("plugins.configs.harpoon")
 		end,
 	},
-	{ "ThePrimeagen/harpoon", lazy = false },
 	{
 		"gelguy/wilder.nvim",
 		config = function()
@@ -144,6 +175,54 @@ M.plugins = {
 		config = function()
 			return require("plugins.configs.lualine")
 		end,
+	},
+	{
+		"letieu/harpoon-lualine",
+		dependencies = {
+			{
+				"ThePrimeagen/harpoon",
+				branch = "harpoon2",
+			},
+		},
+	},
+	{
+		"https://github.com/zaldih/themery.nvim",
+		config = function()
+			return require("plugins.configs.themery")
+		end,
+	},
+	{
+		"https://github.com/nvimdev/dashboard-nvim",
+		config = function()
+			return require("plugins.configs.dashboard")
+		end,
+		dependencies = { "nvim-lua/plenary.nvim" },
+	},
+	{
+		"jinh0/eyeliner.nvim",
+		config = function()
+			require("eyeliner").setup({
+				highlight_on_key = true, -- show highlights only after keypress
+				dim = true, -- dim all other characters if set to true (recommended!)
+			})
+		end,
+	},
+	{
+		"https://github.com/blazkowolf/gruber-darker.nvim",
+		opts = {
+			bold = true,
+			italic = {
+				strings = false,
+				--comments = false,
+				operators = false,
+				folds = false,
+			},
+			undercurl = false,
+			underline = true,
+		},
+	},
+	{
+		"xiyaowong/transparent.nvim",
 	},
 }
 

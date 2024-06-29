@@ -16,4 +16,5 @@ require("lazy").setup({
 	checker = { enabled = true },
 })
 
-vim.cmd("colorscheme onedark")
+vim.cmd("colorscheme gruvbox")
+vim.cmd("TransparentEnable")

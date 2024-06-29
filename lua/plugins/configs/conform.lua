@@ -7,7 +7,7 @@ require("conform").setup({
 		css = { "prettier" },
 		html = { "prettier" },
 		json = { "prettier" },
-		markdown = { "prettier" },
+		markdown = { "prettier", "markdown-toc" },
 		toml = { "prettier" },
 		yaml = { "prettier" },
 		lua = { "stylua" },
