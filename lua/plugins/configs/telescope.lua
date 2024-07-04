@@ -10,7 +10,7 @@ require("telescope").setup({
 			"--column",
 			"--smart-case",
 		},
-		prompt_prefix = " ➜  ",
+		prompt_prefix = " ➜ ",
 		selection_caret = "  ",
 		layout_config = {
 			horizontal = {
@@ -26,3 +26,5 @@ require("telescope").setup({
 		},
 	},
 })
+
+require("telescope").load_extension("git_worktree")

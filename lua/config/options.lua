@@ -19,7 +19,6 @@ opt.termguicolors = true
 opt.scrolloff = 10
 opt.isfname:append("@-@")
 opt.updatetime = 50
-
 opt.fillchars = { eob = " " }
 
 vim.cmd("set clipboard+=unnamedplus")
@@ -36,5 +35,12 @@ vim.api.nvim_create_autocmd("FileType", {
 	callback = function()
 		opt.shiftwidth = 2
 		opt.tabstop = 2
+	end,
+})
+
+vim.api.nvim_create_autocmd("BufEnter", {
+	pattern = "*",
+	callback = function()
+		vim.opt.formatoptions:remove({ "r", "o" })
 	end,
 })

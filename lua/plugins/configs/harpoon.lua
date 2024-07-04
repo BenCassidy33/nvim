@@ -43,6 +43,10 @@ local function toggle_telescope(harpoon_files)
 		:find()
 end
 
-vim.keymap.set("n", "<C-e>", function()
+keymap.set("n", "<C-t>", function()
+	harpoon.ui:toggle_quick_menu(harpoon:list())
+end)
+
+keymap.set("n", "<C-e>", function()
 	toggle_telescope(harpoon:list())
 end, { desc = "Open harpoon window" })

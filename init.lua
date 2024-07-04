@@ -12,9 +12,8 @@ vim.opt.rtp:prepend(lazypath)
 -- Setup lazy.nvim
 require("lazy").setup({
 	spec = require("plugins").plugins,
-	--install = { colorscheme = { "gruvbox" } },
-	checker = { enabled = true },
+	checker = { enabled = true, notify = false },
 })
 
-vim.cmd("colorscheme gruvbox")
+vim.cmd("colorscheme gruber-darker")
 vim.cmd("TransparentEnable")

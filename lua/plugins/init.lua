@@ -55,6 +55,13 @@ M.plugins = {
 	{
 		"ellisonleao/gruvbox.nvim",
 		opts = {
+			italic = {
+				strings = false,
+				emphasis = false,
+				comments = false,
+				operators = false,
+				folds = false,
+			},
 			terminal_colors = true,
 			strikethrough = false,
 			undercurl = false,
@@ -224,6 +231,7 @@ M.plugins = {
 	{
 		"xiyaowong/transparent.nvim",
 	},
+	{ "https://github.com/ThePrimeagen/git-worktree.nvim" },
 }
 
 return M
