@@ -232,6 +232,7 @@ M.plugins = {
 		"xiyaowong/transparent.nvim",
 	},
 	{ "https://github.com/ThePrimeagen/git-worktree.nvim" },
+	{ "https://github.com/echasnovski/mini.colors" },
 }
 
 return M
