@@ -29,3 +29,13 @@ require("telescope").setup({
 })
 
 require("telescope").load_extension("git_worktree")
+
+local keymap = vim.keymap
+
+keymap.set("n", "<C-f>", "<CMD>Telescope find_files<CR>", { silent = true })
+keymap.set("n", "<C-g>", "<CMD>Telescope live_grep<CR>", { silent = true })
+keymap.set("n", "<leader>bu", "<CMD>Telescope buffers<CR>", { silent = true })
+keymap.set("n", "<leader>wt", function()
+	require("telescope").extensions.git_worktree.git_worktrees()
+end, { silent = true })
+keymap.set("n", "<C-h>", "<CMD>Telescope helptags<CR>", { silent = true })

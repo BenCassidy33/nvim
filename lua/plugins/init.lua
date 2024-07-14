@@ -193,12 +193,6 @@ M.plugins = {
 		},
 	},
 	{
-		"https://github.com/zaldih/themery.nvim",
-		config = function()
-			return require("plugins.configs.themery")
-		end,
-	},
-	{
 		"https://github.com/nvimdev/dashboard-nvim",
 		config = function()
 			return require("plugins.configs.dashboard")

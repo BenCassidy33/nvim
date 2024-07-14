@@ -17,3 +17,8 @@ require("lazy").setup({
 
 vim.cmd("colorscheme onedark_sat")
 --vim.cmd("TransparentEnable")
+
+vim.api.nvim_set_hl(0, "DiagnosticVirtualTextError", { bg = none })
+vim.api.nvim_set_hl(0, "DiagnosticVirtualTextWarn", { bg = none })
+vim.api.nvim_set_hl(0, "DiagnosticVirtualTextHint", { bg = none })
+vim.api.nvim_set_hl(0, "DiagnosticVirtualTextInfo", { bg = none })
