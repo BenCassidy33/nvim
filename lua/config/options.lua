@@ -1,6 +1,7 @@
 local opt = vim.opt
 
 --opt.guicursor = ""
+
 opt.relativenumber = true
 opt.tabstop = 4
 opt.softtabstop = 4
@@ -31,16 +32,23 @@ vim.cmd("set nohlsearch")
 -- })
 
 vim.api.nvim_create_autocmd("FileType", {
-	pattern = { "typescript", "ts", "js", "tsx", "jsx", "lua", "c", "cpp" },
-	callback = function()
-		opt.shiftwidth = 2
-		opt.tabstop = 2
-	end,
+  pattern = { "typescript", "ts", "js", "tsx", "jsx", "lua", "c", "cpp" },
+  callback = function()
+    opt.shiftwidth = 2
+    opt.tabstop = 2
+  end,
 })
 
 vim.api.nvim_create_autocmd("BufEnter", {
-	pattern = "*",
-	callback = function()
-		vim.opt.formatoptions:remove({ "r", "o" })
-	end,
+  pattern = "*",
+  callback = function()
+    vim.opt.formatoptions:remove({ "r", "o" })
+  end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "markdown" },
+  callback = function()
+    vim.cmd("set conceallevel=2")
+  end
 })

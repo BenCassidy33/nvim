@@ -9,6 +9,8 @@ keymap.set("v", "J", ":m '>+1<CR>gv=gv", { silent = true })
 keymap.set("v", "K", ":m '<-2<CR>gv=gv", { silent = true })
 
 keymap.set("n", "<C-o>", function()
-	local keys = vim.api.nvim_replace_termcodes("O<ESC>", true, false, true)
-	vim.api.nvim_feedkeys(keys, "n", false)
+  local keys = vim.api.nvim_replace_termcodes("O<ESC>", true, false, true)
+  vim.api.nvim_feedkeys(keys, "n", false)
 end)
+
+keymap.set("n", "<leader>T", "<cmd>Twilight<CR>")
