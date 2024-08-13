@@ -28,7 +28,7 @@ local on_attach = function(_, bufnr)
   keymap.set("n", "<leader>rn", function()
     vim.lsp.buf.rename()
   end, opts)
-  keymap.set("n", "<leader>e", function()
+  keymap.set("n", "E", function()
     vim.diagnostic.open_float()
   end, opts)
   keymap.set("n", "K", function()
@@ -66,7 +66,8 @@ function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
   return orig_util_open_floating_preview(contents, syntax, opts, ...)
 end
 
-local lsps = { "lua_ls", "tsserver", "pyright", "clangd", "taplo", "zls", "gopls", "ocamllsp", "cssls" }
+local lsps = { "lua_ls", "tsserver", "pyright", "clangd", "taplo", "zls", "gopls", "ocamllsp", "cssls", "bashls", "html",
+  "astro" }
 
 for _, ls in ipairs(lsps) do
   lspconfig[ls].setup({

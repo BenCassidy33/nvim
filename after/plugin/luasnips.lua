@@ -112,3 +112,20 @@ THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR I
       })
   )
 })
+
+ls.add_snippets("javascript", {
+  s("doc",
+    fmta(
+      [[
+
+/**
+  * @param {<type>} <name>
+  * <final>
+*/
+  ]], {
+        type = i(1, "type"),
+        name = i(2, "name"),
+        final = i(0, "")
+      }
+    ))
+})

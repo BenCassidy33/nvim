@@ -16,8 +16,9 @@ require("conform").setup({
     c = { "clang-format" },
     cpp = { "clang-format" },
     go = { "gofumpt", "goimports-reviser" },
-    python = { "isort", "black" },
     sql = { "sql-formatter" },
+    python = { "ruff_format", "ruff_organize_imports" },
+
 
     ["*"] = { "codespell" },
     ["_"] = { "trim_whitespace" },
