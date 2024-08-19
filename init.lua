@@ -16,8 +16,8 @@ require("lazy").setup({
   checker = { enabled = true, notify = false },
 })
 
-vim.cmd("colorscheme onedark_sat")
---vim.cmd("colorscheme gruvbox_sat")
+--vim.cmd("colorscheme onedark_sat")
+vim.cmd("colorscheme gruvbox")
 --vim.cmd("colorscheme gruber-darker")
 --vim.cmd("colorscheme catppuccin-mocha-sat")
 --vim.cmd("colorscheme tokyonight-night")

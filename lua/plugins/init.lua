@@ -169,6 +169,9 @@ M.plugins = {
     end,
   },
   {
+    "https://github.com/roxma/nvim-yarp"
+  },
+  {
     "gelguy/wilder.nvim",
     config = function()
       return require("plugins.configs.wilder")
@@ -436,6 +439,30 @@ M.plugins = {
       require("tokyodark").setup(opts) -- calling setup is optional
     end,
   },
+  {
+    "https://github.com/lewis6991/gitsigns.nvim",
+    config = function()
+      return require "plugins.configs.gitsigns"
+    end
+  },
+  {
+    "kdheepak/lazygit.nvim",
+    cmd = {
+      "LazyGit",
+      "LazyGitConfig",
+      "LazyGitCurrentFile",
+      "LazyGitFilter",
+      "LazyGitFilterCurrentFile",
+    },
+
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+
+    keys = {
+      { "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" }
+    }
+  }
 }
 
 return M
