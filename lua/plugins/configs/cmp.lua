@@ -30,11 +30,21 @@ cmp.setup({
     { name = "buffer" },
     { name = "path" },
     { name = "calc" },
+    {
+      name = "dictionary",
+      keyword_length = 2
+    }
   }),
 
   window = {
+    --completion = cmp.config.window.bordered({}),
+    completion = {
+      scrollbar = false,
+    },
+
+
     documentation = {
-      --border = "rounded",
+      border = "rounded",
       winhighlight = "NormalFloat:CompeDocumentation,FloatBorder:CompeDocumentationBorder",
       max_width = 50,
       min_width = 50,

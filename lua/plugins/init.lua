@@ -315,52 +315,52 @@ M.plugins = {
       vim.keymap.set("n", "<leader>mpd", fns.details_tags_toggle)
     end,
   },
-  {
-    "epwalsh/obsidian.nvim",
-    version = "*", -- recommended, use latest release instead of latest commit
-    lazy = true,
-    ft = "markdown",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-
-    },
-    opts = {
-      workspaces = {
-        {
-          name = "personal",
-          path = "~/Notes/",
-        },
-      },
-
-      completion = {
-        nvim_cmp = true,
-        min_chars = 2,
-      },
-
-      note_id_func = function(title)
-        local suffix = ""
-        if title ~= nil then
-          -- If title is given, transform it into valid file name.
-          suffix = title:gsub(" ", "-"):gsub("[^A-Za-z0-9-]", ""):lower()
-        else
-          -- If title is nil, just add 4 random uppercase letters to the suffix.
-          for _ = 1, 4 do
-            suffix = suffix .. string.char(math.random(65, 90))
-          end
-        end
-        return tostring(os.time()) .. "-" .. suffix
-      end,
-
-      mappings = {
-        ["gf"] = {
-          action = function()
-            return require("obsidian").util.gf_passthrough()
-          end
-        }
-      }
-
-    }
-  },
+  -- {
+  --   "epwalsh/obsidian.nvim",
+  --   version = "*", -- recommended, use latest release instead of latest commit
+  --   lazy = true,
+  --   ft = "markdown",
+  --   dependencies = {
+  --     "nvim-lua/plenary.nvim",
+  --
+  --   },
+  --   opts = {
+  --     workspaces = {
+  --       {
+  --         name = "personal",
+  --         path = "~/Notes/",
+  --       },
+  --     },
+  --
+  --     completion = {
+  --       nvim_cmp = true,
+  --       min_chars = 2,
+  --     },
+  --
+  --     note_id_func = function(title)
+  --       local suffix = ""
+  --       if title ~= nil then
+  --         -- If title is given, transform it into valid file name.
+  --         suffix = title:gsub(" ", "-"):gsub("[^A-Za-z0-9-]", ""):lower()
+  --       else
+  --         -- If title is nil, just add 4 random uppercase letters to the suffix.
+  --         for _ = 1, 4 do
+  --           suffix = suffix .. string.char(math.random(65, 90))
+  --         end
+  --       end
+  --       return tostring(os.time()) .. "-" .. suffix
+  --     end,
+  --
+  --     mappings = {
+  --       ["gf"] = {
+  --         action = function()
+  --           return require("obsidian").util.gf_passthrough()
+  --         end
+  --       }
+  --     }
+  --
+  --   }
+  -- },
   {
     "andrewferrier/wrapping.nvim",
     ft = { "markdown" },
@@ -462,7 +462,31 @@ M.plugins = {
     keys = {
       { "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" }
     }
-  }
+  },
+  {
+    "OXY2DEV/markview.nvim",
+    lazy = false, -- Recommended
+    -- ft = "markdown" -- If you decide to lazy-load anyway
+
+    dependencies = {
+      -- You will not need this if you installed the
+      -- parsers manually
+      -- Or if the parsers are in your $RUNTIMEPATH
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-tree/nvim-web-devicons"
+    },
+
+  },
+  "neanias/everforest-nvim",
+  version = false,
+  lazy = false,
+  priority = 1000,   -- make sure to load this before all the other start plugins
+  -- Optional; default configuration will be used if setup isn't called.
+  config = function()
+    require("everforest").setup({
+      -- Your config here
+    })
+  end,
 }
 
 return M

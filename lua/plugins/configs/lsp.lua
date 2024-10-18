@@ -66,7 +66,7 @@ function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
   return orig_util_open_floating_preview(contents, syntax, opts, ...)
 end
 
-local lsps = { "lua_ls", "tsserver", "pyright", "clangd", "taplo", "zls", "gopls", "ocamllsp", "cssls", "bashls", "html",
+local lsps = { "lua_ls", "ts_ls", "pyright", "clangd", "taplo", "zls", "gopls", "ocamllsp", "cssls", "bashls", "html",
   "astro" }
 
 for _, ls in ipairs(lsps) do

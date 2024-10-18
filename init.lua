@@ -16,8 +16,9 @@ require("lazy").setup({
   checker = { enabled = true, notify = false },
 })
 
---vim.cmd("colorscheme onedark_sat")
 vim.cmd("colorscheme gruvbox")
+
+--vim.cmd("colorscheme onedark_sat")
 --vim.cmd("colorscheme gruber-darker")
 --vim.cmd("colorscheme catppuccin-mocha-sat")
 --vim.cmd("colorscheme tokyonight-night")
@@ -29,3 +30,5 @@ vim.api.nvim_set_hl(0, "DiagnosticVirtualTextError", { bg = none, undercurl = no
 vim.api.nvim_set_hl(0, "DiagnosticVirtualTextWarn", { bg = none, undercurl = none })
 vim.api.nvim_set_hl(0, "DiagnosticVirtualTextHint", { bg = none, undercurl = none })
 vim.api.nvim_set_hl(0, "DiagnosticVirtualTextInfo", { bg = none, undercurl = none })
+
+vim.cmd("highlight Pmenu guibg=NONE") -- tranparency for cmp
