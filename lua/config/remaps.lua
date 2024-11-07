@@ -14,3 +14,5 @@ keymap.set("n", "<C-o>", function()
 end)
 
 keymap.set("n", "<leader>T", "<cmd>Twilight<CR>")
+vim.keymap.set("n", "<C-n>", "<cmd>NvimTreeToggle<CR>")
+vim.keymap.set("n", "<C-t>", "<cmd>NvimTreeFocus<CR>")

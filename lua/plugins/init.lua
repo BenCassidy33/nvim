@@ -35,7 +35,7 @@ M.plugins = {
 
       onedark.setup({
         style = "darker",
-        transparent = true,
+        transparent = false,
 
         code_style = {
           comments = "none",
@@ -108,14 +108,19 @@ M.plugins = {
     "folke/tokyonight.nvim",
     lazy = false,
     priority = 1000,
+
     opts = {
       transparent = true,
+      terminal_colors = true,
       styles = {
         sidebars = "transparent",
         floats = "transparent",
+
+        comments = { italic = false },
+        keywords = { italic = false },
       },
 
-      on_hightlights = function(hl, _)
+      on_highlights = function(hl, _)
         hl.DiagnosticUnderlineWarn.undercurl = false
         hl.DiagnosticUnderlineWarn.underline = true
       end
@@ -287,14 +292,14 @@ M.plugins = {
     opts = {},
     enabled = false
   },
-  -- {
-  --   "https://github.com/ggandor/leap.nvim",
-  --   opts = {},
-  --   lazy = false,
-  --   config = function()
-  --     require('leap').create_default_mappings()
-  --   end
-  -- },
+  {
+    "https://github.com/ggandor/leap.nvim",
+    opts = {},
+    lazy = false,
+    config = function()
+      require('leap').create_default_mappings()
+    end
+  },
   {
     "wallpants/github-preview.nvim",
     cmd = { "GithubPreviewToggle" },
@@ -395,7 +400,7 @@ M.plugins = {
   {
     "https://github.com/Mofiqul/vscode.nvim",
     opts = {
-      transparent = true,
+      transparent = false,
     }
   },
   {
@@ -423,7 +428,6 @@ M.plugins = {
     event = "VeryLazy",
     config = function()
       require("nvim-surround").setup({
-        -- Configuration here, or leave empty to use defaults
       })
     end
   },
@@ -477,16 +481,180 @@ M.plugins = {
     },
 
   },
-  "neanias/everforest-nvim",
-  version = false,
-  lazy = false,
-  priority = 1000,   -- make sure to load this before all the other start plugins
-  -- Optional; default configuration will be used if setup isn't called.
-  config = function()
-    require("everforest").setup({
-      -- Your config here
-    })
-  end,
+  {
+    "neanias/everforest-nvim",
+    version = false,
+    lazy = false,
+    priority = 1000, -- make sure to load this before all the other start plugins
+    -- Optional; default configuration will be used if setup isn't called.
+    config = function()
+      require("everforest").setup({
+        -- Your config here
+      })
+    end,
+  },
+  {
+    "https://github.com/drewtempelmeyer/palenight.vim",
+  },
+  {
+    "lervag/vimtex",
+    lazy = false, -- we don't want to lazy load VimTeX
+    init = function()
+      vim.g.vimtex_view_method = "zathura"
+      vim.g.vimtex_compiler_method = 'latexrun'
+      vim.g.vimtex_view_general_options = '--unique file:@pdf\\#src:@line@tex'
+    end
+  },
+  {
+    "https://github.com/nyoom-engineering/oxocarbon.nvim",
+    lazy = false
+  },
+  {
+    "https://github.com/nvim-tree/nvim-tree.lua",
+    lazy = false,
+    config = function()
+      require("nvim-tree").setup({
+        sort = {
+          sorter = "case_sensitive",
+        },
+        view = {
+          width = 30,
+        },
+        renderer = {
+          group_empty = true,
+        },
+        filters = {
+          dotfiles = true,
+        },
+      })
+    end
+  },
+  {
+    'akinsho/bufferline.nvim',
+    version = "*",
+    dependencies = 'nvim-tree/nvim-web-devicons',
+    config = function()
+      return require('plugins.configs.bufferline')
+    end
+  },
+  {
+    "kiyoon/jupynium.nvim",
+    build = "pip3 install --user .",
+    -- build = "conda run --no-capture-output -n jupynium pip install .",
+    -- enabled = vim.fn.isdirectory(vim.fn.expand "~/miniconda3/envs/jupynium"),
+    requires = { " stevearc/dressing.nvim" },
+    config = function()
+      require("jupynium").setup({})
+    end
+  },
+  {
+    "iamcco/markdown-preview.nvim",
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    build = "cd app && npm install",
+    init = function()
+      vim.g.mkdp_filetypes = { "markdown" }
+    end,
+    ft = { "markdown" },
+  },
+  {
+    "vhyrro/luarocks.nvim",
+    priority = 1001, -- this plugin needs to run before anything else
+    opts = {
+      rocks = { "magick" },
+    },
+  },
+  {
+    "https://github.com/3rd/image.nvim",
+    config = function()
+      -- default config
+      require("image").setup({
+        backend = "kitty",
+        integrations = {
+          markdown = {
+            enabled = true,
+            clear_in_insert_mode = false,
+            download_remote_images = true,
+            only_render_image_at_cursor = false,
+            filetypes = { "markdown", "vimwiki" }, -- markdown extensions (ie. quarto) can go here
+          },
+          neorg = {
+            enabled = true,
+            clear_in_insert_mode = false,
+            download_remote_images = true,
+            only_render_image_at_cursor = false,
+            filetypes = { "norg" },
+          },
+          html = {
+            enabled = false,
+          },
+          css = {
+            enabled = false,
+          },
+        },
+        max_width = nil,
+        max_height = nil,
+        max_width_window_percentage = nil,
+        max_height_window_percentage = 50,
+        window_overlap_clear_enabled = false,                                               -- toggles images when windows are overlapped
+        window_overlap_clear_ft_ignore = { "cmp_menu", "cmp_docs", "" },
+        editor_only_render_when_focused = false,                                            -- auto show/hide images when the editor gains/looses focus
+        tmux_show_only_in_active_window = true,                                             -- auto show/hide images in the correct Tmux window (needs visual-activity off
+        hijack_file_patterns = { "*.png", "*.jpg", "*.jpeg", "*.gif", "*.webp", "*.avif" }, -- render image files as images when opened
+      })
+    end
+  },
+  {
+    "3rd/diagram.nvim",
+    dependencies = {
+      "3rd/image.nvim",
+    },
+    opts = { -- you can just pass {}, defaults below
+      renderer_options = {
+        mermaid = {
+          background = nil, -- nil | "transparent" | "white" | "#hex"
+          theme = nil,      -- nil | "default" | "dark" | "forest" | "neutral"
+          scale = 1,        -- nil | 1 (default) | 2  | 3 | ...
+        },
+        plantuml = {
+          charset = nil,
+        },
+        d2 = {
+          theme_id = nil,
+          dark_theme_id = nil,
+          scale = nil,
+          layout = nil,
+          sketch = nil,
+        },
+      }
+    },
+
+    config = function()
+      require("diagram").setup({
+        integrations = {
+          require("diagram.integrations.markdown"),
+          require("diagram.integrations.neorg"),
+        },
+        renderer_options = {
+          mermaid = {
+            theme = "forest",
+          },
+          plantuml = {
+            charset = "utf-8",
+          },
+          d2 = {
+            theme_id = 1,
+          },
+        },
+      })
+    end
+  },
+  {
+    "startup-nvim/startup.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim", "nvim-telescope/telescope-file-browser.nvim" },
+    config = function()
+      require "startup".setup()
+    end
+  }
 }
 
 return M
