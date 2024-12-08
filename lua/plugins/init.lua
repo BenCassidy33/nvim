@@ -1,7 +1,14 @@
 local M = {}
 
 M.plugins = {
-  { "nvim-tree/nvim-web-devicons" },
+  {
+    "nvim-tree/nvim-web-devicons",
+    config = function()
+      require('nvim-tree').setup {
+        view = { side = "right" }
+      }
+    end
+  },
   {
     "stevearc/oil.nvim",
     opts = {},
@@ -36,6 +43,7 @@ M.plugins = {
       onedark.setup({
         style = "darker",
         transparent = false,
+        term_colors = true,
 
         code_style = {
           comments = "none",
@@ -63,10 +71,12 @@ M.plugins = {
         folds = false,
       },
       terminal_colors = true,
-      strikethrough = false,
+      strikethrough = true,
       undercurl = false,
       underline = true,
-      transparent_mode = true
+      contrast = "hard", -- can be "hard", "soft" or empty string
+      transparent_mode = true,
+      -- transparent_mode = true,
     },
   },
 
@@ -110,7 +120,7 @@ M.plugins = {
     priority = 1000,
 
     opts = {
-      transparent = true,
+      transparent = false,
       terminal_colors = true,
       styles = {
         sidebars = "transparent",
@@ -183,14 +193,15 @@ M.plugins = {
     end,
     dependencies = { "roxma/nvim-yarp" },
   },
-  {
-    "nvim-lualine/lualine.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-    config = function()
-      return require("plugins.configs.lualine")
-    end,
-    enabled = false,
-  },
+  -- {
+  --   "nvim-lualine/lualine.nvim",
+  --   dependencies = { "nvim-tree/nvim-web-devicons" },
+  --   config = function()
+  --     return require("plugins.configs.lualine")
+  --   end,
+  --
+  --   -- enabled = true,
+  -- },
   {
     "letieu/harpoon-lualine",
     dependencies = {
@@ -320,52 +331,6 @@ M.plugins = {
       vim.keymap.set("n", "<leader>mpd", fns.details_tags_toggle)
     end,
   },
-  -- {
-  --   "epwalsh/obsidian.nvim",
-  --   version = "*", -- recommended, use latest release instead of latest commit
-  --   lazy = true,
-  --   ft = "markdown",
-  --   dependencies = {
-  --     "nvim-lua/plenary.nvim",
-  --
-  --   },
-  --   opts = {
-  --     workspaces = {
-  --       {
-  --         name = "personal",
-  --         path = "~/Notes/",
-  --       },
-  --     },
-  --
-  --     completion = {
-  --       nvim_cmp = true,
-  --       min_chars = 2,
-  --     },
-  --
-  --     note_id_func = function(title)
-  --       local suffix = ""
-  --       if title ~= nil then
-  --         -- If title is given, transform it into valid file name.
-  --         suffix = title:gsub(" ", "-"):gsub("[^A-Za-z0-9-]", ""):lower()
-  --       else
-  --         -- If title is nil, just add 4 random uppercase letters to the suffix.
-  --         for _ = 1, 4 do
-  --           suffix = suffix .. string.char(math.random(65, 90))
-  --         end
-  --       end
-  --       return tostring(os.time()) .. "-" .. suffix
-  --     end,
-  --
-  --     mappings = {
-  --       ["gf"] = {
-  --         action = function()
-  --           return require("obsidian").util.gf_passthrough()
-  --         end
-  --       }
-  --     }
-  --
-  --   }
-  -- },
   {
     "andrewferrier/wrapping.nvim",
     ft = { "markdown" },
@@ -394,13 +359,13 @@ M.plugins = {
     "https://github.com/shaunsingh/nord.nvim",
     config = function()
       vim.g.nord_contrast = true
-      vim.g.nord_disable_background = true
+      -- vim.g.nord_disable_background = true
     end
   },
   {
     "https://github.com/Mofiqul/vscode.nvim",
     opts = {
-      transparent = false,
+      transparent = true,
     }
   },
   {
@@ -417,7 +382,7 @@ M.plugins = {
     priority = 1000,
     opts = {
       disable = {
-        background = true,
+        -- background = true,
         term_colors = true,
       }
     }
@@ -564,97 +529,100 @@ M.plugins = {
     },
   },
   {
-    "https://github.com/3rd/image.nvim",
-    config = function()
-      -- default config
-      require("image").setup({
-        backend = "kitty",
-        integrations = {
-          markdown = {
-            enabled = true,
-            clear_in_insert_mode = false,
-            download_remote_images = true,
-            only_render_image_at_cursor = false,
-            filetypes = { "markdown", "vimwiki" }, -- markdown extensions (ie. quarto) can go here
-          },
-          neorg = {
-            enabled = true,
-            clear_in_insert_mode = false,
-            download_remote_images = true,
-            only_render_image_at_cursor = false,
-            filetypes = { "norg" },
-          },
-          html = {
-            enabled = false,
-          },
-          css = {
-            enabled = false,
-          },
-        },
-        max_width = nil,
-        max_height = nil,
-        max_width_window_percentage = nil,
-        max_height_window_percentage = 50,
-        window_overlap_clear_enabled = false,                                               -- toggles images when windows are overlapped
-        window_overlap_clear_ft_ignore = { "cmp_menu", "cmp_docs", "" },
-        editor_only_render_when_focused = false,                                            -- auto show/hide images when the editor gains/looses focus
-        tmux_show_only_in_active_window = true,                                             -- auto show/hide images in the correct Tmux window (needs visual-activity off
-        hijack_file_patterns = { "*.png", "*.jpg", "*.jpeg", "*.gif", "*.webp", "*.avif" }, -- render image files as images when opened
-      })
-    end
-  },
-  {
-    "3rd/diagram.nvim",
-    dependencies = {
-      "3rd/image.nvim",
-    },
-    opts = { -- you can just pass {}, defaults below
-      renderer_options = {
-        mermaid = {
-          background = nil, -- nil | "transparent" | "white" | "#hex"
-          theme = nil,      -- nil | "default" | "dark" | "forest" | "neutral"
-          scale = 1,        -- nil | 1 (default) | 2  | 3 | ...
-        },
-        plantuml = {
-          charset = nil,
-        },
-        d2 = {
-          theme_id = nil,
-          dark_theme_id = nil,
-          scale = nil,
-          layout = nil,
-          sketch = nil,
-        },
-      }
-    },
-
-    config = function()
-      require("diagram").setup({
-        integrations = {
-          require("diagram.integrations.markdown"),
-          require("diagram.integrations.neorg"),
-        },
-        renderer_options = {
-          mermaid = {
-            theme = "forest",
-          },
-          plantuml = {
-            charset = "utf-8",
-          },
-          d2 = {
-            theme_id = 1,
-          },
-        },
-      })
-    end
-  },
-  {
     "startup-nvim/startup.nvim",
     dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim", "nvim-telescope/telescope-file-browser.nvim" },
     config = function()
       require "startup".setup()
     end
-  }
+  },
+  {
+    "https://github.com/zaldih/themery.nvim",
+    lazy = false
+  },
+  {
+    "https://github.com/akinsho/toggleterm.nvim",
+    config = function()
+      require('toggleterm').setup()
+    end
+  },
+  {
+    'sainnhe/edge',
+    lazy = false,
+    priority = 1000,
+    config = function()
+      vim.g.edge_enable_italic = true
+    end
+  },
+
+  {
+    "rockyzhang24/arctic.nvim",
+    requires = { "rktjmp/lush.nvim" }
+  },
+  {
+    "ellisonleao/carbon-now.nvim",
+    lazy = true,
+    cmd = "CarbonNow",
+    ---@param opts cn.ConfigSchema
+    opts = {
+      base_url = "https://carbon.now.sh/",
+      options = {
+        bg = "blue",
+        drop_shadow_blur = "68px",
+        drop_shadow = false,
+        drop_shadow_offset_y = "20px",
+        font_family = "Hack",
+        font_size = "18px",
+        line_height = "133%",
+        line_numbers = true,
+        theme = "one-dark",
+        width = "680",
+        window_theme = "sharp",
+        padding_horizontal = "0px",
+        padding_vertical = "0px",
+      },
+    }
+  },
+  {
+    "https://github.com/joshdick/onedark.vim",
+    name = "onedarkvim"
+  },
+  {
+    "https://github.com/Hashino/doing.nvim",
+    config = function()
+      require('doing').setup {
+        'hashino/doing.nvim',
+        config = function()
+          require('doing').setup {
+            message_timeout = 2000,
+            doing_prefix = 'Doing: ',
+            ignored_buffers = { 'NvimTree' },
+            winbar = { enabled = true },
+            store = {
+              file_name = '.tasks',
+              auto_create_file = false,
+            },
+          }
+        end,
+      }
+      local api = require('doing.api')
+
+      vim.keymap.set('n', '<leader>dn', api.done, { desc = '[D]o[n]e with current task' })
+      vim.keymap.set('n', '<leader>de', api.edit, { desc = '[E]dit what tasks you`re [D]oing' })
+    end,
+  },
+  {
+    "folke/todo-comments.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    opts = {}
+  },
+  {
+    'barrett-ruth/live-server.nvim',
+    cmd = { 'LiveServerStart', 'LiveServerStop' },
+    config = true
+  },
+  {
+    "https://github.com/olimorris/onedarkpro.nvim",
+  },
 }
 
 return M

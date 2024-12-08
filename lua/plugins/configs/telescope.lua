@@ -2,9 +2,14 @@ require("telescope").setup({
 
   pickers = {
     find_files = {
-      --theme = "dropdown",
-      previewer = true,
+      theme = "dropdown",
+      previewer = false,
       hidden = false,
+      layout_config = {
+        -- width = 2.2,
+        width = 0.55,
+        height = 0.45
+      }
     },
 
     help_tags = {
@@ -24,10 +29,10 @@ require("telescope").setup({
       "--column",
       "--smart-case",
     },
-    -- prompt_prefix = " ➜ ",
-    -- selection_caret = " ➜ ",
-    prompt_prefix = " ->  ",
-    selection_caret = " -> ",
+    selection_caret = " ➜ ",
+    prompt_prefix = " ➜ ",
+    -- prompt_prefix = " ->  ",
+    -- selection_caret = " -> ",
     layout_config = {
       horizontal = {
         prompt_position = "bottom",
@@ -36,6 +41,8 @@ require("telescope").setup({
       },
       vertical = {},
       mirror = false,
+      -- width = 0.87,
+      -- height = 0.80,
       width = 0.87,
       height = 0.80,
       preview_cutoff = 120,

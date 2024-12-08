@@ -31,11 +31,19 @@ vim.cmd("set nohlsearch")
 -- })
 
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "typescript", "ts", "js", "tsx", "jsx", "lua", "c", "cpp" },
+  pattern = { "typescript", "ts", "js", "tsx", "jsx", "lua"},
   callback = function()
     opt.shiftwidth = 2
     opt.tabstop = 2
   end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = {"c", "cpp", "h", "hpp"},
+  callback = function ()
+    opt.shiftwidth = 6
+    opt.tabstop = 6
+  end
 })
 
 vim.api.nvim_create_autocmd("BufEnter", {
