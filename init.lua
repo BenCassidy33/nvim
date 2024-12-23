@@ -18,6 +18,12 @@ require("lazy").setup({
 
 -- Colorscheme = "onedark_vivid"
 Colorscheme = "gruvbox"
+-- Colorscheme = "carbonfox"
+-- Colorscheme = "nordfox-sat"
+-- Colorscheme = "tokyonight-storm"
+-- Colorscheme = "vscode"
+-- Colorscheme = "vscode-sat"
+
 
 -- Colorscheme = "vscode"
 vim.g.colors_name = Colorscheme
@@ -33,6 +39,8 @@ vim.api.nvim_set_hl(0, "DiagnosticVirtualTextHint", { bg = none, undercurl = non
 vim.api.nvim_set_hl(0, "DiagnosticVirtualTextInfo", { bg = none, undercurl = none })
 
 vim.cmd("highlight Pmenu guibg=NONE") -- transparency for cmp
+
+vim.lsp.inlay_hint.enable(true)
 
 
 -- TODO: Change Neovide Background color to match terminal color

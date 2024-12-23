@@ -1,6 +1,6 @@
 local opt = vim.opt
 
---opt.guicursor = ""
+-- opt.guicursor = ""
 opt.relativenumber = true
 opt.tabstop = 4
 opt.softtabstop = 4
@@ -31,7 +31,7 @@ vim.cmd("set nohlsearch")
 -- })
 
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "typescript", "ts", "js", "tsx", "jsx", "lua"},
+  pattern = { "typescript", "ts", "js", "tsx", "jsx", "lua" },
   callback = function()
     opt.shiftwidth = 2
     opt.tabstop = 2
@@ -39,8 +39,8 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = {"c", "cpp", "h", "hpp"},
-  callback = function ()
+  pattern = { "c", "cpp", "h", "hpp" },
+  callback = function()
     opt.shiftwidth = 6
     opt.tabstop = 6
   end

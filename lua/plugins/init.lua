@@ -263,6 +263,13 @@ M.plugins = {
     lazy = false,   -- This plugin is already lazy
   },
   {
+    "https://github.com/rust-lang/rust.vim",
+    ft = "rust",
+    init = function()
+      vim.g.rustfmt_autosave = 1
+    end
+  },
+  {
     "https://github.com/mfussenegger/nvim-dap",
     config = function()
       return require('plugins.configs.dap')
@@ -622,6 +629,20 @@ M.plugins = {
   },
   {
     "https://github.com/olimorris/onedarkpro.nvim",
+  },
+  {
+    "https://github.com/folke/snacks.nvim",
+    opts = {
+      indent = {
+        enabled = true,
+      },
+
+      animate = {
+        duration = 20,
+        easing = "linear",
+        fps = 60
+      }
+    }
   },
 }
 
