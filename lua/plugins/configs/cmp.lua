@@ -37,10 +37,11 @@ cmp.setup({
   }),
 
   window = {
-    --completion = cmp.config.window.bordered({}),
-    completion = {
-      scrollbar = false,
-    },
+    completion = cmp.config.window.bordered({ border = double }),
+    documentation = cmp.config.window.bordered(),
+    -- completion = {
+    --   scrollbar = false,
+    -- },
 
 
     documentation = {
@@ -53,3 +54,24 @@ cmp.setup({
     },
   },
 })
+
+cmp.setup.cmdline('/', {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = {
+    { name = 'buffer' }
+  }
+})
+
+-- cmp.setup.cmdline(':', {
+--   mapping = cmp.mapping.preset.cmdline(),
+--   sources = cmp.config.sources({
+--     { name = 'path' }
+--   }, {
+--     {
+--       name = 'cmdline',
+--       option = {
+--         ignore_cmds = { 'Man', '!' }
+--       }
+--     }
+--   })
+-- })

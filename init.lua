@@ -16,8 +16,9 @@ require("lazy").setup({
   checker = { enabled = true, notify = false },
 })
 
+Colorscheme = "gruber-darker"
 -- Colorscheme = "onedark_vivid"
-Colorscheme = "gruvbox"
+-- Colorscheme = "gruvbox"
 -- Colorscheme = "carbonfox"
 -- Colorscheme = "nordfox-sat"
 -- Colorscheme = "tokyonight-storm"
@@ -40,8 +41,7 @@ vim.api.nvim_set_hl(0, "DiagnosticVirtualTextInfo", { bg = none, undercurl = non
 
 vim.cmd("highlight Pmenu guibg=NONE") -- transparency for cmp
 
-vim.lsp.inlay_hint.enable(true)
-
+vim.lsp.inlay_hint.enable(false)
 
 -- TODO: Change Neovide Background color to match terminal color
 if vim.g.neovide then
@@ -84,3 +84,10 @@ local ColorChanges = {
 for k, v in pairs(ColorChanges) do
   vim.api.nvim_set_hl(0, k, v)
 end
+
+vim.filetype.add({
+  extension = {
+    c3 = "c3",
+    c3i = "c3i"
+  }
+})

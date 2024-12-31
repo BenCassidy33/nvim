@@ -1,5 +1,6 @@
 local lspconfig = require("lspconfig")
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
+local capabilities = cmp_nvim_lsp.default_capabilities()
 local keymap = vim.keymap
 local border = {
   { "🭽", "FloatBorder" },
@@ -11,10 +12,10 @@ local border = {
   { "🭼", "FloatBorder" },
   { "▏", "FloatBorder" },
 }
-
 local opts = { noremap = true, silent = true }
 
-local capabilities = cmp_nvim_lsp.default_capabilities()
+
+
 local on_attach = function(_, bufnr)
   opts.buffer = bufnr
   opts.desc = "Show LSP References"
@@ -77,6 +78,23 @@ for _, ls in ipairs(lsps) do
     hints = { enable = true }
   })
 end
+
+local util = require('lspconfig/util')
+local configs = require('lspconfig.configs')
+if not configs.c3_lsp then
+  configs.c3_lsp = {
+    default_config = {
+      cmd = { vim.fn.expand("~") .. "/.builds/c3-lsp/server/bin/c3lsp" },
+      filetypes = { "c3", "c3i" },
+      root_dir = function(fname)
+        return util.find_git_ancestor(fname) or util.path.dirname(fname)
+      end,
+      settings = {},
+      name = "c3_lsp"
+    }
+  }
+end
+lspconfig.c3_lsp.setup {}
 
 vim.diagnostic.config({
   signs = false,

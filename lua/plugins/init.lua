@@ -92,6 +92,7 @@ M.plugins = {
       "L3MON4D3/LuaSnip",
       "saadparwaiz1/cmp_luasnip",
       "rafamadriz/friendly-snippets",
+      "hrsh7th/cmp-cmdline"
     },
   },
   {
@@ -644,6 +645,8 @@ M.plugins = {
       }
     }
   },
+
+  { "https://github.com/Airbus5717/c3.vim" }
 }
 
 return M
