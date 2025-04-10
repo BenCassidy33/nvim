@@ -2,8 +2,7 @@ local ls = require("luasnip")
 
 -- ls.config.setconfig({
 --   history = true,
---   updatevents = "TextChanged,TextChangedI",
---   enable_autosnippets = true,
+--   updatevents = "TextChanged,TextChangedI", enable_autosnippets = true,
 -- })
 
 local fmta = require "luasnip.extras.fmt".fmta

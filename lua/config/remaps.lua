@@ -13,7 +13,7 @@ keymap.set("v", "K", ":m '<-2<CR>gv=gv", { silent = true })
 --   vim.api.nvim_feedkeys(keys, "n", false)
 -- end)
 
-keymap.set("n", "!", ":!")
+keymap.set("n", "!", ":terminal ")
 
 keymap.set("n", "<leader>T", "<cmd>Twilight<CR>")
 vim.keymap.set("n", "<C-t>", "<cmd>NvimTreeToggle<CR>")
@@ -28,3 +28,15 @@ end)
 -- re-run last command
 vim.keymap.set({ 'n', 'v' }, '<CR>', '@:', { silent = false, noremap = true })
 vim.keymap.set('n', "<C-n>", ":make!<CR>", { silent = false, noremap = true })
+
+vim.keymap.set("t", "<ESC>", [[<C-\><C-n>]], { noremap = true })
+vim.keymap.set("t", "<C-d>", function() vim.cmd("bd!") end, { noremap = true })
+
+
+vim.keymap.set("n", "H", function()
+  vim.cmd("bprevious")
+end, { noremap = true })
+
+vim.keymap.set("n", "L", function()
+  vim.cmd("bnext")
+end, { noremap = true })

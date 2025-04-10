@@ -4,7 +4,7 @@ require("oil").setup({
     "icon",
     -- "permissions",
     -- "size",
-    "mtime",
+    --"mtime",
   },
   buf_options = {
     buflisted = false,

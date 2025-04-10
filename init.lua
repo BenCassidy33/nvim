@@ -16,18 +16,22 @@ require("lazy").setup({
   checker = { enabled = true, notify = false },
 })
 
-Colorscheme = "gruber-darker"
+Colorscheme = "tairiki-dark"
+-- Colorscheme = "gruber-darker"
+-- Colorscheme = "github_dark"
 -- Colorscheme = "onedark_vivid"
--- Colorscheme = "gruvbox"
+-- Colorscheme = "gruvbox_sat"
+-- Colorscheme = "onedark_vivid"
+
 -- Colorscheme = "carbonfox"
--- Colorscheme = "nordfox-sat"
--- Colorscheme = "tokyonight-storm"
+--Colorscheme = "nordfox-sat"
+--Colorscheme = "tokyonight-storm"
+--Colorscheme = "vscode-sat"
 -- Colorscheme = "vscode"
--- Colorscheme = "vscode-sat"
 
 
--- Colorscheme = "vscode"
-vim.g.colors_name = Colorscheme
+
+vim.cmd("colorscheme " .. Colorscheme)
 vim.cmd("TransparentEnable")
 vim.opt.laststatus = 0
 
@@ -38,6 +42,10 @@ vim.api.nvim_set_hl(0, "DiagnosticVirtualTextError", { bg = none, undercurl = no
 vim.api.nvim_set_hl(0, "DiagnosticVirtualTextWarn", { bg = none, undercurl = none })
 vim.api.nvim_set_hl(0, "DiagnosticVirtualTextHint", { bg = none, undercurl = none })
 vim.api.nvim_set_hl(0, "DiagnosticVirtualTextInfo", { bg = none, undercurl = none })
+
+-- vim.api.nvim_set_hl(0, "TelescopeBorder", { bg = none })
+-- vim.api.nvim_set_hl(0, "TelescopePromptBorder", { bg = none })
+
 
 vim.cmd("highlight Pmenu guibg=NONE") -- transparency for cmp
 
@@ -55,7 +63,8 @@ if vim.g.neovide then
   -- opt.guifont = "Liga SFMono Nerd Font:h10"
   -- opt.guifont = "JetBrainsMono Nerd Font:h14"
   -- opt.guifont = "Source Code Pro:h9"
-  opt.guifont = "RobotoMono Nerd Font"
+  --opt.guifont = "RobotoMono Nerd Font"
+  opt.guifont = "SFMono SemiBold Nerd Font Complete"
 
   vim.g.colors_name = Colorscheme
   vim.cmd("TransparentDisable")

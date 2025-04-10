@@ -16,7 +16,7 @@ require("conform").setup({
     c = { "clang-format" },
     cpp = { "clang-format" },
     go = { "gofumpt", "goimports-reviser" },
-    sql = { "sql-formatter" },
+    sql = { "sqlfmt" },
     python = { "ruff_format", "ruff_organize_imports" },
 
 
@@ -30,6 +30,6 @@ require("conform").setup({
     lsp_format = "fallback",
   },
 
-  log_level = vim.log.levels.ERROR,
+  log_level = vim.log.levels.OFF,
   notify_on_error = false,
 })

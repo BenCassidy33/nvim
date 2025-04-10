@@ -21,7 +21,7 @@ cmp.setup({
     ["<C-c>"] = cmp.mapping.abort(),
     ["<C-f>"] = cmp.mapping.complete({ select = true }),
     ["<CR>"] = cmp.mapping.confirm({ select = false }),
-    --["<leader>ca"] = cmp.mapping.code_action(),
+    --["<leader>zz"] = cmp.mapping.code_action(),
   }),
 
   sources = cmp.config.sources({

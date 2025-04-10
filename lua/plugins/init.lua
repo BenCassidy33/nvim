@@ -194,15 +194,6 @@ M.plugins = {
     end,
     dependencies = { "roxma/nvim-yarp" },
   },
-  -- {
-  --   "nvim-lualine/lualine.nvim",
-  --   dependencies = { "nvim-tree/nvim-web-devicons" },
-  --   config = function()
-  --     return require("plugins.configs.lualine")
-  --   end,
-  --
-  --   -- enabled = true,
-  -- },
   {
     "letieu/harpoon-lualine",
     dependencies = {
@@ -212,13 +203,6 @@ M.plugins = {
       },
     },
   },
-  -- {
-  -- 	"https://github.com/nvimdev/dashboard-nvim",
-  -- 	config = function()
-  -- 		return require("plugins.configs.dashboard")
-  -- 	end,
-  -- 	dependencies = { "nvim-lua/plenary.nvim" },
-  -- },
   {
     "jinh0/eyeliner.nvim",
     config = function()
@@ -473,7 +457,7 @@ M.plugins = {
     "lervag/vimtex",
     lazy = false, -- we don't want to lazy load VimTeX
     init = function()
-      vim.g.vimtex_view_method = "zathura"
+      vim.g.vimtex_view_general_viewer = "okular"
       vim.g.vimtex_compiler_method = 'latexrun'
       vim.g.vimtex_view_general_options = '--unique file:@pdf\\#src:@line@tex'
     end
@@ -561,7 +545,9 @@ M.plugins = {
       vim.g.edge_enable_italic = true
     end
   },
-
+  {
+    "rktjmp/lush.nvim"
+  },
   {
     "rockyzhang24/arctic.nvim",
     requires = { "rktjmp/lush.nvim" }
@@ -597,7 +583,8 @@ M.plugins = {
   {
     "https://github.com/Hashino/doing.nvim",
     config = function()
-      require('doing').setup {
+      local doing = require('doing')
+      doing.setup {
         'hashino/doing.nvim',
         config = function()
           require('doing').setup {
@@ -612,10 +599,10 @@ M.plugins = {
           }
         end,
       }
-      local api = require('doing.api')
 
-      vim.keymap.set('n', '<leader>dn', api.done, { desc = '[D]o[n]e with current task' })
-      vim.keymap.set('n', '<leader>de', api.edit, { desc = '[E]dit what tasks you`re [D]oing' })
+
+      vim.keymap.set('n', '<leader>dn', doing.done, { desc = '[D]o[n]e with current task' })
+      vim.keymap.set('n', '<leader>de', doing.edit, { desc = '[E]dit what tasks you`re [D]oing' })
     end,
   },
   {
@@ -646,7 +633,93 @@ M.plugins = {
     }
   },
 
-  { "https://github.com/Airbus5717/c3.vim" }
+  { "https://github.com/Airbus5717/c3.vim" },
+  {
+    "https://github.com/kdheepak/monochrome.nvim"
+  },
+
+  { "https://github.com/n1ghtmare/noirblaze-vim" },
+  {
+    'jesseleite/nvim-noirbuddy',
+    dependencies = {
+      { 'tjdevries/colorbuddy.nvim' }
+    },
+    lazy = false,
+    priority = 1000,
+    opts = {
+      styles = {
+        italic = false,
+        undercurl = false,
+      }
+    },
+  },
+  {
+    "https://github.com/projekt0n/github-nvim-theme",
+    config = function()
+      require('github-theme').setup {
+        options = {
+          transparent = true,
+          terminal_colors = true,
+
+          styles = {
+            comments = 'NONE',
+            functions = 'NONE',
+            keywords = 'NONE',
+            variables = 'NONE',
+            conditionals = 'NONE',
+            constants = 'NONE',
+            numbers = 'NONE',
+            operators = 'NONE',
+            strings = 'NONE',
+            types = 'NONE',
+          }
+        }
+      }
+    end
+  },
+  {
+    "deparr/tairiki.nvim",
+    branch = "v2"
+
+  },
+  {
+    "https://github.com/chriskempson/vim-tomorrow-theme"
+  },
+  {
+    "https://github.com/dgox16/oldworld.nvim"
+  },
+  {
+    'weilbith/nvim-code-action-menu',
+    cmd = 'CodeActionMenu',
+    config = function()
+      require("nvim-code-action-menu").setup {
+      }
+    end
+  },
+  {
+    "huynle/ogpt.nvim",
+    event = "VeryLazy",
+    opts = {
+      default_provider = "ollama",
+      providers = {
+        ollama = {
+          api_host = os.getenv("OLLAMA_API_HOST") or "http://localhost:11434",
+          api_key = os.getenv("OLLAMA_API_KEY") or "",
+        }
+      }
+    },
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim"
+    }
+  },
+  {
+    "supermaven-inc/supermaven-nvim",
+    config = function()
+      require("supermaven-nvim").setup({})
+    end,
+  },
 }
 
 return M

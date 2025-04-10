@@ -68,7 +68,7 @@ function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
 end
 
 local lsps = { "lua_ls", "ts_ls", "pyright", "clangd", "taplo", "zls", "gopls", "cssls", "bashls", "html",
-  "astro", "emmet_language_server", "julials", "ols" }
+  "astro", "emmet_language_server", "julials", "ols", "hls", "sqls" }
 
 for _, ls in ipairs(lsps) do
   lspconfig[ls].setup({
