@@ -720,6 +720,19 @@ M.plugins = {
       require("supermaven-nvim").setup({})
     end,
   },
+  {
+    "https://github.com/vague2k/vague.nvim",
+    config = function()
+      require("vague").setup({
+        transparent = true,
+        style = {
+          lsp = {
+            diagnostic_info = "bold"
+          }
+        }
+      })
+    end
+  }
 }
 
 return M

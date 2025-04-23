@@ -16,18 +16,8 @@ require("lazy").setup({
   checker = { enabled = true, notify = false },
 })
 
-Colorscheme = "tairiki-dark"
--- Colorscheme = "gruber-darker"
 -- Colorscheme = "github_dark"
--- Colorscheme = "onedark_vivid"
--- Colorscheme = "gruvbox_sat"
--- Colorscheme = "onedark_vivid"
-
--- Colorscheme = "carbonfox"
---Colorscheme = "nordfox-sat"
---Colorscheme = "tokyonight-storm"
---Colorscheme = "vscode-sat"
--- Colorscheme = "vscode"
+Colorscheme = "vague"
 
 
 
