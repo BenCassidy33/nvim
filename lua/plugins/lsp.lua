@@ -1,4 +1,4 @@
--- See https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md for configurations.
+-- See https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md for configurations.plug
 local M = {}
 
 M.plugin = {
@@ -14,29 +14,38 @@ M.plugin = {
 	end,
 }
 
-M.get_lsps = function()
-	local registry = require("mason-registry")
-	for _, pkg in ipairs(registry.get_installed_packages()) do
-		if pkg.spec.categories[1] == "LSP" and pkg.spec.name ~= "rust_analyzer" then
-			print(pkg.name)
-			for key, _ in pairs(pkg) do
-				print("     ", key)
-			end
-		end
-	end
-end
+-- M.get_lsps = function()
+-- 	local registry = require("mason-registry")
+-- 	for _, pkg in ipairs(registry.get_installed_packages()) do
+-- 		if pkg.spec.categories[1] == "LSP" and pkg.spec.name ~= "rust_analyzer" then
+-- 			print(pkg.name)
+-- 			for key, _ in pairs(pkg) do
+-- 				print("     ", key)
+-- 			end
+-- 		end
+-- 	end
+-- end
+
+local auto_setup_ignore = {
+	["lua-language-server"] = true,
+	["rust_analyzer"] = true,
+}
 
 M.setup = function()
 	local lspconfig = require("lspconfig")
-	-- local util = require("lspconfig/util")
-	-- local configs = require("lspconfig.configs")
 	local cmp_nvim_lsp = require("cmp_nvim_lsp")
 	local capabilities = cmp_nvim_lsp.default_capabilities()
 	local registry = require("mason-registry")
 	local mlsp = require("mason-lspconfig").get_mappings()["mason_to_lspconfig"]
 
 	for _, pkg in ipairs(registry.get_installed_packages()) do
-		if pkg.spec.categories[1] == "LSP" and pkg.spec.name ~= "rust-analyzer" then
+		if
+			mlsp ~= nil
+			and pkg.spec.categories[1] == "LSP"
+			and not auto_setup_ignore[pkg.spec.name]
+			and pkg.spec.name ~= "lua-language-server"
+			and pkg.spec.name ~= "rust_analyzer"
+		then
 			lspconfig[mlsp[pkg.name]].setup({
 				capabilities = capabilities,
 				on_attach = M.on_attach,

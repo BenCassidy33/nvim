@@ -10,8 +10,8 @@ M.plugin = {
 }
 
 M.opts = {
-	create_keymaps = false,
-	create_commands = true,
+	create_keymaps = true,
+	create_commands = false,
 	notify_on_switch = true,
 	auto_set_mode_filetype_allowlist = {
 		"asciidoc",

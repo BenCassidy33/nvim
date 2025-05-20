@@ -9,6 +9,17 @@ M.plugin = {
 
 M.opts = {
 	transparent = true,
+	boolean = "bold",
+	number = "none",
+	float = "none",
+	error = "none",
+	comments = "none",
+	conditionals = "none",
+	functions = "none",
+	headings = "bold",
+	operators = "none",
+	strings = "none",
+	variables = "none",
 }
 
 return M.plugin

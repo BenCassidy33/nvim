@@ -9,7 +9,7 @@ M.plugin = {
 
 M.opts = {
 	keymaps = {
-		accept_suggestion = "<C-a>",
+		accept_suggestion = "<C-m>",
 		clear_suggestion = "<C-]>",
 		accept_word = "<C-j>",
 	},
