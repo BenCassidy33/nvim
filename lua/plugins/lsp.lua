@@ -31,12 +31,25 @@ local auto_setup_ignore = {
 	["rust_analyzer"] = true,
 }
 
+test = function()
+	local lspconfig = require("lspconfig")
+	local cmp_nvim_lsp = require("cmp_nvim_lsp")
+	local capabilities = cmp_nvim_lsp.default_capabilities()
+	local registry = require("mason-registry")
+	local mlsp = require("mason-lspconfig").get_mappings()["package_to_lspconfig"]
+
+	for _, pkg in ipairs(registry.get_installed_packages()) do
+		local mapping = mlsp[pkg.name]
+		print(mapping, pkg)
+	end
+end
+
 M.setup = function()
 	local lspconfig = require("lspconfig")
 	local cmp_nvim_lsp = require("cmp_nvim_lsp")
 	local capabilities = cmp_nvim_lsp.default_capabilities()
 	local registry = require("mason-registry")
-	local mlsp = require("mason-lspconfig").get_mappings()["mason_to_lspconfig"]
+	local mlsp = require("mason-lspconfig").get_mappings()["package_to_lspconfig"]
 
 	for _, pkg in ipairs(registry.get_installed_packages()) do
 		if
@@ -46,6 +59,7 @@ M.setup = function()
 			and pkg.spec.name ~= "lua-language-server"
 			and pkg.spec.name ~= "rust_analyzer"
 		then
+			print("Setting Up: ", mlsp[pkg.name])
 			lspconfig[mlsp[pkg.name]].setup({
 				capabilities = capabilities,
 				on_attach = M.on_attach,
@@ -56,6 +70,8 @@ M.setup = function()
 	end
 
 	lspconfig.lua_ls.setup({
+		on_attach = M.on_attach,
+		capabilities = M.capabilities,
 		settings = { Lua = {
 			telemetry = { enable = false },
 			diagnostics = { globals = { "vim" } },
@@ -65,6 +81,7 @@ M.setup = function()
 end
 
 M.on_attach = function(_, bufnr)
+	print("attached!")
 	local opts = { noremap = true, silent = true }
 	opts.buffer = bufnr
 	opts.desc = "Show LSP References"

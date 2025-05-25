@@ -5,7 +5,10 @@ M.plugin = {
 	lazy = false,
 	branch = "harpoon2",
 	requires = { "nvim-lua/plenary.nvim" },
-	config = M.config,
+	config = function()
+		require("harpoon").setup(M.opts)
+		M.config()
+	end,
 }
 
 M.opts = {}
