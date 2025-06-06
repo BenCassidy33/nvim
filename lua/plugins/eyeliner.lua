@@ -8,6 +8,7 @@ M.plugin = {
 			dim = true,
 		})
 	end,
+	lazy = true,
 }
 
 return M.plugin

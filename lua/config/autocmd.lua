@@ -5,6 +5,13 @@ vim.api.nvim_create_user_command("ToggleInlayHints", function()
 end, {})
 
 -- vim.api.nvim_create_autocmd("FileType", {
+-- 	pattern = { "typescript", "javascript" },
+-- 	callback = function(args)
+-- 		vim.opt.shiftwidth = 2
+-- 	end,
+-- })
+
+-- vim.api.nvim_create_autocmd("FileType", {
 -- 	pattern = { "markdown", "typst" },
 -- 	callback = function(args)
 -- 		local bufnr = args.buf

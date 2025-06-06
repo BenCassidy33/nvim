@@ -5,6 +5,7 @@ M.plugin = {
 	config = function()
 		-- return require("").setup(M.opts)
 	end,
+	lazy = true,
 }
 
 M.opts = {}

@@ -21,6 +21,7 @@ M.plugin = {
 		},
 	},
 	config = function() end,
+	lazy = true,
 }
 
 return M.plugin
