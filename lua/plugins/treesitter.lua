@@ -35,7 +35,7 @@ M.opts[1] = {
 -- local M = {}
 
 M.plugins[2] = {
-	"nvim-treesitter/playground",
+	-- "nvim-treesitter/playground",
 	-- config = function()
 	-- 	return require("nvim-treesitter.configs").setup(M.opts)
 	-- end,

@@ -5,6 +5,7 @@ M.plugin = {
 	config = function()
 		return require("live-server").setup(M.opts)
 	end,
+    lazy = "true"
 }
 
 M.opts = {}

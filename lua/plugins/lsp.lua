@@ -9,9 +9,9 @@ M.plugin = {
 		{ "antosha417/nvim-lsp-file-operations", config = true },
 		"https://github.com/nvim-lua/plenary.nvim.git",
 	},
-	config = function()
-		return M.setup()
-	end,
+	-- config = function()
+	-- 	return M.setup()
+	-- end,
 }
 
 -- M.get_lsps = function()
@@ -29,6 +29,7 @@ M.plugin = {
 local auto_setup_ignore = {
 	["lua-language-server"] = true,
 	["rust_analyzer"] = true,
+    ["lua_ls"] = true,
 }
 
 M.setup = function()

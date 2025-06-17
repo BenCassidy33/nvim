@@ -2,7 +2,6 @@ local M  = {}
 
 M.config = function ()
 	require("gruvbox").setup(M.opts)
-	-- vim.cmd("colorscheme gruvbox")
 end
 
 M.opts = {
@@ -28,4 +27,5 @@ M.plugin = {
 	config = M.config
 }
 
-return M.plugin
+-- return M.plugin
+return {}

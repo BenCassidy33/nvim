@@ -5,6 +5,8 @@ M.plugin = {
 	config = function()
 		return require("nvim-ts-autotag").setup(M.opts)
 	end,
+
+    ft = { "jsx", "tsx" }
 }
 
 M.opts = {}

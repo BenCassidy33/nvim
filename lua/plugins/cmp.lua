@@ -1,4 +1,6 @@
-local opts = function()
+local M = {}
+
+M.opts = function()
 	local cmp = require("cmp")
 	local luasnip = require("luasnip")
 	return {
@@ -42,14 +44,25 @@ local opts = function()
 			},
 		}),
 
+        formatting = {
+            format = M.format
+        },
+
 		window = {
 			completion = cmp.config.window.bordered({
 				scrollbar = false,
 				border = "none",
 				winhighlight = "NormalFloat:MyPmenu,FloatBorder:CompeDocumentationBorder",
+                max_width = 40
 			}),
+
+            overflow = {
+                enable = true
+            },
+
 			documentation = cmp.config.window.bordered({
 				border = "none",
+                style = "minimal",
 				winhighlight = "NormalFloat:MyPmenu,FloatBorder:CompeDocumentationBorder",
 				max_width = 50,
 				min_width = 50,
@@ -60,10 +73,34 @@ local opts = function()
 	}
 end
 
+
+
+local ELLIPSIS_CHAR = '…'
+local MAX_LABEL_WIDTH = 45
+local MAX_KIND_WIDTH = 14
+
+M.get_ws = function (max, len)
+  return (" "):rep(max - len)
+end
+
+M.format = function(_, item)
+  local content = item.abbr
+  -- local kind_symbol = symbols[item.kind]
+  -- item.kind = kind_symbol .. get_ws(MAX_KIND_WIDTH, #kind_symbol)
+
+  if #content > MAX_LABEL_WIDTH then
+    item.abbr = vim.fn.strcharpart(content, 0, MAX_LABEL_WIDTH) .. ELLIPSIS_CHAR
+  else
+    item.abbr = content .. M.get_ws(MAX_LABEL_WIDTH, #content)
+  end
+
+  return item
+end
+
 return {
 	"https://github.com/hrsh7th/nvim-cmp",
 	config = function()
-		return require("cmp").setup(opts())
+		return require("cmp").setup(M.opts())
 	end,
 	event = "InsertEnter",
 	dependencies = {
