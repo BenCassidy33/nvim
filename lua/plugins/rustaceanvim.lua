@@ -35,7 +35,8 @@ M.setup = function()
 	end, {})
 
 	vim.keymap.set("n", "K", function()
-		lsp({ "hover", "actions" })
+		-- lsp({ "hover", "actions" })
+		vim.lsp.buf.hover({ border = "rounded" })
 	end)
 end
 
