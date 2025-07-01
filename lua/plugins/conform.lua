@@ -28,6 +28,8 @@ M.opts = {
         go = { "goimports" },
         sql = { "sqlfmt" },
         python = { "ruff_format", "ruff_organize_imports" },
+        typst = { "prettypst" },
+        lua = { "stylua" },
 
         ["*"] = { "codespell" },
         ["_"] = { "trim_whitespace" },
@@ -38,6 +40,7 @@ M.opts = {
         if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
             return
         end
+
         return { timeout_ms = 500, lsp_format = "fallback" }
     end,
 

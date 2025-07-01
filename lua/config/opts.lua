@@ -1,7 +1,8 @@
 local utils = require("utils")
 local opt = vim.opt
 
--- opt.guicursor = ""
+opt.guicursor = ""
+vim.opt.showbreak = "↳ "
 opt.relativenumber = true
 opt.tabstop = 4
 opt.softtabstop = 4
@@ -27,6 +28,7 @@ opt.ignorecase = true
 opt.incsearch = true
 opt.smartcase = true
 opt.hlsearch = false
+opt.signcolumn = "no"
 --
 
 vim.cmd("set clipboard+=unnamedplus")

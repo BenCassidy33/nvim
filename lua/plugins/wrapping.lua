@@ -4,14 +4,14 @@ M.plugin = {
 	"andrewferrier/wrapping.nvim",
 	config = function()
 		require("wrapping").setup(M.opts)
-		require("wrapping").soft_wrap_mode()
+		require("wrapping").hard_wrap_mode()
 	end,
-	ft = { "markdown", "typst" },
+	ft = { "markdown", "typst", "plaintext" },
 }
 
 M.opts = {
 	create_keymaps = true,
-	create_commands = false,
+	create_commands = true,
 	notify_on_switch = true,
 	auto_set_mode_filetype_allowlist = {
 		"asciidoc",
@@ -22,6 +22,7 @@ M.opts = {
 		"rst",
 		"tex",
 		"text",
+        "typst"
 	},
 }
 

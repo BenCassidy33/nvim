@@ -14,6 +14,7 @@ M.plugin = {
 	opt = true,
 	event = "InsertCharPre",
 	priority = 1000,
+    enabled = false,
 }
 
 M.opts = {

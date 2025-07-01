@@ -40,8 +40,6 @@ M.opts = {
 		},
 		selection_caret = " ➜ ",
 		prompt_prefix = " ➜ ",
-		-- prompt_prefix = " ->  ",
-		-- selection_caret = " -> ",
 		layout_config = {
 			horizontal = {
 				prompt_position = "bottom",
