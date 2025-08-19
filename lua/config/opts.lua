@@ -1,7 +1,7 @@
 local utils = require("utils")
 local opt = vim.opt
 
-opt.guicursor = ""
+-- opt.guicursor = ""
 vim.opt.showbreak = "↳ "
 opt.relativenumber = true
 opt.tabstop = 4
@@ -31,7 +31,7 @@ opt.hlsearch = false
 opt.signcolumn = "no"
 --
 
-vim.cmd("set clipboard+=unnamedplus")
+-- vim.opt.clipboard = "unnamed"
 vim.diagnostic.config({ virtual_text = true })
 
 -- vim.cmd("TransparentEnable")

@@ -1,24 +1,41 @@
---@module 'oil'
---@type oil.SetupOpts
-local opts = {
-  default_file_explorer = true,
-  columns = {
-    "icon",
-  },
+local M = {}
 
-  view_options = {
-      show_hidden = true
-  }
-}
-
-
-return {
+M.plugin = {
 	"https://github.com/stevearc/oil.nvim",
-	-- dependencies = { { "https://github.com/nvim-tree/nvim-web-devicons", opts = {} }},
-	dependencies = { { "echasnovski/mini.icons", opts = {} }},
 	config = function()
-		return require("oil").setup(opts)
-	end
+		return require("oil").setup(M.opts)
+	end,
+	dependencies = { { "echasnovski/mini.icons", opts = {} } },
 }
 
+M.opts = {
+	default_file_explorer = true,
+	columns = {
+		"icon",
+	},
 
+	view_options = {
+		show_hidden = true,
+	},
+}
+
+return M.plugin
+
+-- local opts = {
+-- 	default_file_explorer = true,
+-- 	columns = {
+-- 		"icon",
+-- 	},
+--
+-- 	view_options = {
+-- 		show_hidden = true,
+-- 	},
+-- }
+--
+-- return {
+-- 	"https://github.com/stevearc/oil.nvim",
+-- 	dependencies = { { "echasnovski/mini.icons", opts = {} } },
+-- 	config = function()
+-- 		return require("oil").setup(opts)
+-- 	end,
+-- }

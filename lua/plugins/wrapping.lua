@@ -3,8 +3,8 @@ local M = {}
 M.plugin = {
 	"andrewferrier/wrapping.nvim",
 	config = function()
-		require("wrapping").setup(M.opts)
-		require("wrapping").hard_wrap_mode()
+		require("nvim-word.lua.plugins.wrapping").setup(M.opts)
+		require("nvim-word.lua.plugins.wrapping").hard_wrap_mode()
 	end,
 	ft = { "markdown", "typst", "plaintext" },
 }
@@ -22,7 +22,7 @@ M.opts = {
 		"rst",
 		"tex",
 		"text",
-        "typst"
+		"typst",
 	},
 }
 
