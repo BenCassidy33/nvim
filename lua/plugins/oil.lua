@@ -20,22 +20,3 @@ M.opts = {
 }
 
 return M.plugin
-
--- local opts = {
--- 	default_file_explorer = true,
--- 	columns = {
--- 		"icon",
--- 	},
---
--- 	view_options = {
--- 		show_hidden = true,
--- 	},
--- }
---
--- return {
--- 	"https://github.com/stevearc/oil.nvim",
--- 	dependencies = { { "echasnovski/mini.icons", opts = {} } },
--- 	config = function()
--- 		return require("oil").setup(opts)
--- 	end,
--- }

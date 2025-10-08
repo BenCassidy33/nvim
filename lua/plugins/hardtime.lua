@@ -8,6 +8,7 @@ M.plugin = {
 	dependencies = {
 		"MunifTanjim/nui.nvim",
 	},
+	enabled = false,
 }
 
 M.opts = {}

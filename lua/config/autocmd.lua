@@ -5,72 +5,29 @@ vim.api.nvim_create_user_command("ToggleInlayHints", function()
 end, {})
 
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = { "markdown", "txt", "typst", "plaintext" },
-    callback = function ()
-        local cmp = require("cmp")
-        cmp.setup.buffer({ enable = false })
+	pattern = { "markdown", "txt", "typst", "plaintext" },
+	callback = function()
+		local cmp = require("cmp")
+		cmp.setup.buffer({ enable = false })
 
-        vim.opt.spelllang = "en_us"
-        vim.opt.spell = true
-        vim.opt.wrap = true
-    end
-
+		vim.opt.spelllang = "en_us"
+		vim.opt.spell = true
+		vim.opt.wrap = true
+	end,
 })
 
 -- vim.api.nvim_create_autocmd("FileType", {
--- 	pattern = { "typescript", "javascript" },
--- 	callback = function(args)
+-- 	-- pattern = { "lua", "c", "cpp", "javascript", "typescript" },
+-- 	-- pattern = { "lua","javascript", "typescript" },
+-- 	callback = function()
 -- 		vim.opt.shiftwidth = 2
 -- 	end,
 -- })
 
--- vim.api.nvim_create_autocmd("FileType", {
--- 	pattern = { "markdown", "typst" },
--- 	callback = function(args)
--- 		local bufnr = args.buf
--- 		if vim.api.nvim_buf_get_option(bufnr, "buftype") ~= "" then
--- 			return -- skip for floating, help, terminal, etc.
--- 		end
---
--- 		vim.schedule(function()
--- 			local ok, zen = pcall(require, "zen-mode")
--- 			if ok then
--- 				zen.open()
--- 			end
--- 		end)
--- 	end,
--- })
---
--- vim.api.nvim_create_autocmd("BufLeave", {
--- 	pattern = { "markdown", "typst" },
--- 	callback = function()
--- 		vim.schedule(function()
--- 			local ok, zen = pcall(require, "zen-mode")
--- 			if ok then
--- 				zen.close()
--- 			end
--- 		end)
--- 	end,
--- })
+vim.api.nvim_create_autocmd("BufLeave", {
+	callback = function()
+		vim.fn.system("printf '\\e[6 q'")
+	end,
+})
 
--- autocmd("FileType", {
--- 	pattern = { "markdown", "typst" },
--- 	callback = function()
--- 		vim.wo.relativenumber = false
--- 		vim.schedule(function()
--- 			require("zen-mode").open()
--- 		end)
--- 	end,
--- })
 
--- autocmd("BufLeave", {
--- 	pattern = { "*.md", "*.typ" },
--- 	callback = function()
--- 		vim.schedule(function()
--- 			local ok, zen = pcall(require, "zen-mode")
--- 			if ok then
--- 				zen.close()
--- 			end
--- 		end)
--- 	end,
--- })

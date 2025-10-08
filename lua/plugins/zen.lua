@@ -3,15 +3,17 @@ local M = {}
 M.plugin = {
 	"folke/zen-mode.nvim",
 	opts = M.opts,
-	ft = { "markdown", "typst" },
-	-- cmd = "ZenMode",
+	-- ft = { "markdown", "typst" },
+	cmd = "ZenMode",
 }
 
 M.opts = {
 	options = {
+		enabled = true,
 		number = false,
 		relativenumber = false,
 	},
+
 	plugins = {
 		tmux = { enabled = true },
 	},

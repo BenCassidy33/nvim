@@ -10,8 +10,8 @@ M.plugin = {
 M.opts = {
 	formatters_by_ft = {
 		asm = { "asmfmt" },
-		javascript = { "prettier" },
-		typescript = { "prettier" },
+		javascript = { "prettierd", args = "--tabWidth=4" },
+		typescript = { "prettierd" },
 		javascriptreact = { "prettierd" },
 		typescriptreact = { "prettierd" },
 		css = { "prettierd" },
@@ -27,7 +27,7 @@ M.opts = {
 		-- go = { "gofumpt", "goimports-reviser" },
 		go = { "goimports" },
 		sql = { "pgformatter", "sqlfmt" },
-		python = { "ruff_format", "ruff_organize_imports" },
+		python = { "black", "ruff_format", "ruff_organize_imports" },
 		typst = { "prettypst" },
 		lua = { "stylua" },
 

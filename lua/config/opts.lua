@@ -1,7 +1,8 @@
 local utils = require("utils")
 local opt = vim.opt
 
--- opt.guicursor = ""
+opt.guicursor = ""
+vim.g.disable_autoformat = true
 vim.opt.showbreak = "↳ "
 opt.relativenumber = true
 opt.tabstop = 4

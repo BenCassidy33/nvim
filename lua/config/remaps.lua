@@ -8,6 +8,9 @@ remap("v", "J", ":m '>+1<CR>gv=gv", { silent = true })
 remap("v", "K", ":m '<-2<CR>gv=gv", { silent = true })
 remap("n", "<leader><leader>s", "<CR>so /home/benc/.config/nvim/init.lua<CR>", { noremap = true, silent = false })
 
+
+remap("n", "<C-m>", ":make\n", { noremap = true, silent = false })
+
 remap({ "n", "v" }, "<leader>y", '"+y', { desc = "Copy to clipboard" })
 remap("n", "<leader>Y", '"+Y', { desc = "Copy line to clipboard" })
 
@@ -43,3 +46,9 @@ end, opts)
 remap("i", "<C-h>", function()
 	vim.lsp.buf.signature_help()
 end, opts)
+
+remap("", "<leader>fm", function()
+	require("conform").format({ async = true, lsp_fallback = true })
+end)
+
+remap("n", "!", ":! ")
