@@ -3,7 +3,9 @@ require("config.opts")
 require("config.remaps")
 require("config.autocmd")
 
-vim.cmd("colorscheme rose-pine")
+vim.cmd("colorscheme gruvbox-minor")
+-- vim.cmd("colorscheme rose-pine")
+-- vim.cmd("colorscheme vscode")
 
 local color = string.format("#%06x", vim.api.nvim_get_hl(0, { name = "Keyword", link = false }).fg)
 

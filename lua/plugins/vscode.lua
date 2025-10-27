@@ -9,8 +9,7 @@ M.plugin = {
 
 M.opts = {
     transparent = true,
-    italic_comments = false,
-    terminal_colors = true,
+
 }
 
 return M.plugin

@@ -11,6 +11,7 @@ M.opts = {
 	styles = {
 		transparency = true,
 		italic = false,
+        bold = false,
 	},
 }
 
