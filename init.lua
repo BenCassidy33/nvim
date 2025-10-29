@@ -4,8 +4,10 @@ require("config.remaps")
 require("config.autocmd")
 
 vim.cmd("colorscheme gruvbox-minor")
--- vim.cmd("colorscheme rose-pine")
--- vim.cmd("colorscheme vscode")
+
+local p = require("gruvbox-minor.palette")
+local hl = vim.api.nvim_set_hl
+hl(0, "String", { bg = "NONE", fg = p.Color3, italic = false })
 
 local color = string.format("#%06x", vim.api.nvim_get_hl(0, { name = "Keyword", link = false }).fg)
 
